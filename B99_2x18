@@ -1,0 +1,78 @@
+Problema: Em uma ilha, existem 12 pessoas. 11 pessoas têm o mesmo peso, e 1 é ligeiramente mais pesada ou mais leve. Você pode usar uma gangorra para determinar a pessoa com peso diferente, mas ela pode ser usada no máximo 3 vezes.
+
+Solução: 
+Considere o conjunto de pessoas {p1,p2,...p12}.
+
+1a pesagem:
+	Lado 1 = {p1,p2,p3,p4}
+	Lado 2 = {p5,p6,p7,p8}
+	Reservado = {p9,p10,p11,p12}
+	
+	1) Se lado 1 = lado 2: a pessoa diferente está no reservado e, portanto, p1,...,p8 têm o mesmo peso.
+	2) Se lado 1 < lado 2: Ou a menor pessoa está no lado 1 ou a maior pessoa está no lado 2, e todas as pessoas no reservado têm o mesmo peso. 
+	3) Se lado 1 > lado 2: Será similar ao caso 2). 
+
+2a pesagem:	
+Caso 1) da primeira pesagem: uma pessoa de {p9,p10,p11,p12} é diferente
+	Lado 1 = {p1,p2} (conhecidos)
+	Lado 2 = {p9,p10}
+	Reservado = {p11,p12}
+	
+	1.1) Se lado 1 = lado 2: a pessoa diferente está no reservado e, portanto, p1,...,p10 têm o mesmo peso
+	1.2) Se lado 1 < lado 2: p9 ou p10 é maior e, portanto, p1,...,p8,p11,p12 são iguais
+	1.3) Se lado 1 > lado 2: p9 ou p10 é menor e, portanto, p1,...,p8,p11,p12 são iguais
+
+Caso 2) a menor pessoa está em {p1,p2,p3,p4} ou a maior pessoa está em {p5,p6,p7,p8}. Intercalar os elementos usando conhecidos ({p9,p10,p11,p12}). Note que apenas p6 e p2 mudaram de lado.
+	Lado 1 = {p1,p6,p3}
+	Lado 2 = {p5,p2,p9}
+	Reservado = {p4,p7,p8}
+
+	2.1) lado 1 = lado 2: diferente em {p4,p7,p8}, mas p4 é candidato a menor e p7 e p8 candidatos a maior.
+	2.2) lado 1 < lado 2: a mudança de lado foi irrelevante e, portanto, os diferentes continuam do mesmo lado. Então o diferente está em {p1,p3,p5}, p1 e p3 são candidatos a menor, p5 a maior.
+	2.3) lado 1 > lado 2: a mudança de lado inverteu a comparação, logo o diferente é p2 ou p6, p2 é candidato a menor e p6 a maior.
+
+3a pesagem:
+Caso 1.1 (similar para 1.2 e 1.3) da 2a pesagem: a pessoa diferente está em {p11,p12} ({p9,p10})
+	Lado 1 = {p1} (conhecido)
+	Lado 2 = {p11} ({p9})
+	Reservado = {p12} ({p10})
+	
+	1.1.1) Se lado 1 = lado 2: p12 é o diferente
+	1.1.2) Se lado 1 < lado 2: p11 é o maior
+	1.1.3) Se lado 1 > lado 2: p11 é o menor
+	
+	1.2.1) Se lado 1 = lado 2: p10 é o maior
+	1.2.2) Se lado 1 < lado 2: p9 é o maior
+	1.2.3) Se lado 1 > lado 2: não é possível
+	
+	1.3.1) Se lado 1 = lado 2: p10 é o menor
+	1.3.2) Se lado 1 < lado 2: não é possível
+	1.3.3) Se lado 1 > lado 2: p9 é o menor
+	
+Caso 2.1) da 2a pesagem: Diferente em {p4,p7,p8}, mas p4 é candidato a menor e p7 e p8 candidatos a maior.
+	Lado 1 = {p7}
+	Lado 2 = {p8}
+	Reservado = {p4}
+	
+	2.1.1) lado 1 = lado 2: p4 é menor
+	2.1.2) lado 1 < lado 2: p8 é maior
+	2.1.3) lado 1 > lado 2: p7 é maior
+	
+Caso 2.2) Diferente em {p1,p3,p5}, mas p1 e p3 são candidatos a menor e p5 candidato a maior. 
+	Lado 1 = {p1}
+	Lado 2 = {p3}
+	Reservado = {p5}
+	
+	2.2.1) lado 1 = lado 2: p5 é maior
+	2.2.2) lado 1 < lado 2: p1 é menor
+	2.2.3) lado 1 > lado 2: p3 é menor
+	
+Caso 2.3) Diferente em {p2,p6}, mas p2 é candidato a menor e p6 candidato a maior. 
+	Lado 1 = {p1} (conhecido)
+	Lado 2 = {p2}
+	Reservado = {p6}
+	
+	2.3.1) lado 1 = lado 2: p6 é maior
+	2.3.2) lado 1 < lado 2: não é possível
+	2.3.3) lado 1 > lado 2: p2 é menor
+
